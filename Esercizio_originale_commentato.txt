@@ -1,0 +1,79 @@
+#include <stdio.h>
+
+void menu ();
+void moltiplica ();
+void dividi ();
+void ins_string();
+
+
+int main () //non viene contemplato il caso dove il menu viene ristampato per permettere all'utente di fare più operazioni di seguito
+
+{
+	char scelta = {'\0'};
+	menu ();
+	scanf ("%d", &scelta); //errore sullla variabile richiami un int invece che un char
+
+	switch (scelta)
+	{
+		case 'A':
+		moltiplica();
+		break;
+		case 'B':
+                dividi();
+                break;
+		case 'C':
+                ins_string();
+                break;
+	} 
+
+return 0;
+
+}
+
+
+void menu ()
+{
+	printf ("Benvenuto, sono un assitente digitale, posso aiutarti a sbrigare alcuni compiti\n");
+	printf ("Come posso aiutarti?\n");
+	printf ("A >> Moltiplicare due numeri\nB >> Dividere due numeri\nC >> Inserire una stringa\n");
+
+}
+
+
+void moltiplica ()//non è contemplato l'errore in caso di inserimenti di caratteri al posto dei numeri nelle variabili a e b
+{
+	short int  a,b = 0;  //inizializzare le variabili a 0 è surpefluo in questo caso perchè le andemo a sovrascivere con i successivi scanf
+	printf ("Inserisci i due numeri da moltiplicare:");
+	scanf ("%f", &a); //errore sulla variabile
+	scanf ("%d", &b);
+
+	short int prodotto = a * b; //la variabile short int non mi sembra la più appropriata in questo caso perchè non mostrerebbe un'eventuale resto derivante dall'operazione, preferirei un float
+
+	printf ("Il prodotto tra %d e %d e': %d", a,b,prodotto); //cambiando la variabile prodotto in float, l'ultimo '%d' in questa riga diventerebbe '%f'
+}
+
+
+void dividi () //non è contemplato l'errore in caso di inserimenti di caratteri al posto dei numeri nelle variabili a e b 
+{
+        int  a,b = 0;//inizializzare le variabili a 0 in questo caso è superfluo visto che le sovrascriveremo con scanf
+        printf ("Inserisci il numeratore:");
+        scanf ("%d", &a);
+	printf ("Inserisci il denumeratore:"); //non è contemplato il caso in cui l'utente inserisca 0 nel denominatore
+        scanf ("%d", &b);
+
+        int divisione = a % b;// la variabile int non darebbe il resto di un eventuale operazione anche in questo caso float sarebbe più appropriato
+
+        printf ("La divisione tra %d e %d e': %d", a,b,divisione);//cambiando la variabile divisione in float, l'ultimo '%d' in questa riga diventerebbe '%f'
+}
+
+
+
+
+
+void ins_string () //questa funzione non avrebbe un output per l'utente
+{
+	char stringa[10]; //la stringa non può superare i 10 caratteri, per evitare l'overflow si potrebbe aumentare la dimensione dell'array o avvertire l'utente
+        printf ("Inserisci la stringa:");
+        scanf ("%s", &stringa);//scanf non mostrerebbe stringhe contenenti spazi ad esempio inserendo 'Hello world' mostrerebbe solamente 'Hello'
+}
+
