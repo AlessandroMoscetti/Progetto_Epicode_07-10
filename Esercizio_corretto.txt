@@ -1,0 +1,112 @@
+#include <stdio.h>
+
+void menu ();
+void moltiplica ();
+void dividi ();
+void ins_string();
+
+
+int main () 
+
+{
+        char scelta = {'\0'};
+        while(1) //Ho inserito un ciclo while infinito per permettere all'utente di fare quante operazione voglia finchè non voglia uscire con l'opzione del menù
+        {
+                menu ();
+                scanf (" %c", &scelta);
+		while (getchar() != '\n'); //Questa riga di codice è utilizzata per "pulire" il buffer di input dopo la chiamata 'scanf' del menù. L'ho inserite per un corretto funzionamento della funzione ins_string.
+                switch (scelta)
+                {
+                        case 'A':
+                        moltiplica();
+                        break;
+                        case 'B':
+                        dividi();
+                        break;
+                        case 'C':
+                        ins_string();
+                        break;
+                        case 'D':
+                        printf("Grazie, alla prossima");
+                        return 0;
+                        default:
+                        printf("Perfavore inserire un carattere valido\n");//ho inserito anche il caso in cui il valore inserito dall'utente non corrisponda a un valore del menù
+                }
+        }
+return 0;
+
+}
+
+
+void menu ()
+{
+        printf ("Benvenuto, sono un assitente digitale, posso aiutarti a sbrigare alcuni compiti\n");
+        printf ("Come posso aiutarti?\n");
+        printf ("A >> Moltiplicare due numeri\nB >> Dividere due numeri\nC >> Inserire una stringa\nD >> Uscire dall'assistente digitale\n");
+}
+
+
+void moltiplica ()
+{
+        short int  a,b;//ho lasciato la variabile invariata in caso di operazione più consistenti andrebbe cambiata in int
+        printf ("Inserisci i due numeri da moltiplicare:\n");
+               printf("Primo numero:");
+        while (scanf("%hd", &a) != 1)//ciclo while per controllare il corretto inserimento della variabile 
+        {
+                printf("Hai inserito un valore non valido. Perfavore, inserisci un numero.\n");
+                while (getchar() != '\n'); // Pulisce il buffer per permettere un nuovo inserimento da parte dell'utente
+                printf("Primo numero:");
+        }
+        printf("Secondo numero:");
+        while (scanf("%hd", &b) != 1)
+        {
+                printf("Hai inserito un valore non valido. Perfavore, inserisci un numero.\n");
+                while (getchar() != '\n');
+                printf("Secondo numero:");
+        }
+        short int prodotto = a * b;
+
+        printf ("Il prodotto tra %hd e %hd e': %hd\n", a,b,prodotto);
+}
+
+
+void dividi ()
+{
+        int  a,b = 0;
+        printf ("Inserisci il numeratore:");
+        while (scanf ("%d", &a)!=1)//stesso controllo dell'inserimento da parte dell'utente della prcedente funzione
+        {
+                printf("Hai inserito un valore non valido. Perfavore, inserisci un numero.\n");
+                while (getchar() != '\n');
+                printf("Inserisci il numeratore:");
+        }
+        printf ("Inserisci il denominatore:");
+        while(1)//ciclo infinito per il controllo del denominatore diverso da 0
+        {
+                while (scanf ("%d", &b)!=1)
+                {
+                        printf("Hai inserito un valore non valido. Perfavore, inserisci un numero.\n");
+                        while(getchar()!='\n');
+                        printf("Inserisci il denominatore:");
+                }
+                if (b!=0)//quando b è diverso da 0 esce dal ciclo
+                {
+                        break;
+                }
+                else
+                {
+                        printf("Il denominatore non può essere 0, inserisci un numero valido\nInserisci il denominatore:");
+                }
+        }
+        float  divisione =(float) a/ b;//cambiando la variabile in float divisione possiamo ottenere eventuali resti derivanti dall'operazione
+
+        printf ("La divisione tra %d e %d e': %f\n", a,b,divisione);
+}
+void ins_string () 
+{
+        char stringa[100];//ho aumentato l'array senza mettere avvisi ritenendo che una stringa da massimo 100 caratteri sia sufficente per l'eventuale stringa inserita dall'utente
+        printf ("Inserisci la stringa:");
+        fgets(stringa, sizeof(stringa), stdin);//ho utilizzato fgets per permettere all'utente di inserire una stringa contenente spazi, utilizzando scanf alla prima newline si interromperebbe
+	printf("La stringa inserita è:%s",stringa);//ho aggiunto l'output alla funzione ins_string
+}
+
