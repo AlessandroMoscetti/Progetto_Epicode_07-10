@@ -47,10 +47,10 @@ void moltiplica ()//non è contemplato l'errore in caso di inserimenti di caratt
 	scanf ("%f", &a); //errore sulla variabile
 	scanf ("%d", &b);
 
-	short int prodotto = a * b; //la variabile short int non mi sembra la più appropriata in questo caso perchè non mostrerebbe un'eventuale resto derivante dall'operazione, preferirei un float
+	short int prodotto = a * b; 
 
-	printf ("Il prodotto tra %d e %d e': %d", a,b,prodotto); //cambiando la variabile prodotto in float, l'ultimo '%d' in questa riga diventerebbe '%f'
-}
+	printf ("Il prodotto tra %d e %d e': %d", a,b,prodotto); '
+}//le variabili messe come short int potrebbero essere tutte cambiate in float in caso volessi fare operazioni con numeri reali
 
 
 void dividi () //non è contemplato l'errore in caso di inserimenti di caratteri al posto dei numeri nelle variabili a e b 
@@ -61,7 +61,7 @@ void dividi () //non è contemplato l'errore in caso di inserimenti di caratteri
 	printf ("Inserisci il denumeratore:"); //non è contemplato il caso in cui l'utente inserisca 0 nel denominatore
         scanf ("%d", &b);
 
-        int divisione = a % b;// la variabile int non darebbe il resto di un eventuale operazione anche in questo caso float sarebbe più appropriato
+        int divisione = a % b;// la variabile int non darebbe il resto di un eventuale operazione  in questo caso float sarebbe più appropriato
 
         printf ("La divisione tra %d e %d e': %d", a,b,divisione);//cambiando la variabile divisione in float, l'ultimo '%d' in questa riga diventerebbe '%f'
 }
